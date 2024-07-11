@@ -1,9 +1,11 @@
 package com.ngocha.identity_service.controller;
 
+import com.ngocha.identity_service.dto.request.ApiResponse;
 import com.ngocha.identity_service.dto.request.UserCreationRequest;
 import com.ngocha.identity_service.dto.request.UserUpdateRequest;
 import com.ngocha.identity_service.entity.User;
 import com.ngocha.identity_service.service.Userservice;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +18,11 @@ public class UserController {
     private Userservice userservice;
 
     @PostMapping
-    User createUser(@RequestBody UserCreationRequest request) {
-        return userservice.createRequest(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(userservice.createRequest(request));
+        return apiResponse;
     }
     @GetMapping
     List<User> getUsers() {
