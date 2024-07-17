@@ -1,12 +1,13 @@
 package com.ngocha.identity_service.exception;
 
-import com.ngocha.identity_service.dto.request.ApiResponse;
+import java.util.Objects;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.Objects;
+import com.ngocha.identity_service.dto.request.ApiResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -27,6 +28,7 @@ public class GlobalExceptionHandler {
         apiResponse.setMessage(errorCode.getMessage());
         return ResponseEntity.badRequest().body(apiResponse);
     }
+
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     ResponseEntity<ApiResponse> handlingValidation(MethodArgumentNotValidException exception) {
         String enumKey = Objects.requireNonNull(exception.getFieldError()).getDefaultMessage();
