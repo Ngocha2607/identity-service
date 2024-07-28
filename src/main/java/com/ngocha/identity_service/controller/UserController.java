@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.validation.Valid;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import com.ngocha.identity_service.dto.request.ApiResponse;
@@ -16,10 +17,12 @@ import com.ngocha.identity_service.service.Userservice;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Slf4j
 @RequestMapping("/api/users")
 public class UserController {
     Userservice userservice;
@@ -33,8 +36,11 @@ public class UserController {
     }
 
     @GetMapping
-    List<User> getUsers() {
-        return userservice.getUsers();
+    ApiResponse<List<UserResponse>> getUsers(){
+
+        return ApiResponse.<List<UserResponse>>builder()
+                .result(userservice.getUsers())
+                .build();
     }
 
     @GetMapping("/{userId}")
