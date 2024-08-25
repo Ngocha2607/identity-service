@@ -3,6 +3,7 @@ package com.ngocha.identity_service.dto.response;
 import java.time.LocalDate;
 import java.util.Set;
 
+import com.ngocha.identity_service.entity.Role;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,5 +18,5 @@ public class UserResponse {
     String firstName;
     String lastName;
     LocalDate dob;
-    Set<String> roles;
+    Set<Role> roles;
 }
