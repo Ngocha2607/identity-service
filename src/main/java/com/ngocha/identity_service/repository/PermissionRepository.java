@@ -1,6 +1,7 @@
 package com.ngocha.identity_service.repository;
 
+import com.ngocha.identity_service.entity.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PermissionRepository extends JpaRepository<Permission, string> {
+public interface PermissionRepository extends JpaRepository<Permission, String> {
 }
