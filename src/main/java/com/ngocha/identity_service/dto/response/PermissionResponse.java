@@ -1,4 +1,4 @@
-package com.ngocha.identity_service.dto.request;
+package com.ngocha.identity_service.dto.response;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PermissionRequest {
+public class PermissionResponse {
     String name;
     String description;
 }

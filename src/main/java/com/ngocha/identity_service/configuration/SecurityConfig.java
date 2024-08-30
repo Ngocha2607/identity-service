@@ -25,7 +25,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class SecurityConfig {
 
     private final String[] PUBLIC_ENDPOINTS = {"/api/users",
-            "/auth/token", "/auth/introspect"
+            "/auth/token", "/auth/introspect", "/permissions"
     };
 
     @Value("${jwt.signerKey}")
@@ -33,9 +33,9 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(request ->
-                request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
-                        .anyRequest().authenticated());
+//        httpSecurity.authorizeHttpRequests(request ->
+//                request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
+//                        .anyRequest().authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 ->
                 oauth2.jwt(jwtConfigurer ->

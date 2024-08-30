@@ -25,7 +25,7 @@ import java.text.ParseException;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationController {
     AuthenticationService authenticationService;
-@PostMapping("/token")
+@PostMapping("/login")
     ApiResponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
     AuthenticationResponse result = authenticationService.authenticate(authenticationRequest);
     return ApiResponse.<AuthenticationResponse>builder().code(200).result(result  ).build();
